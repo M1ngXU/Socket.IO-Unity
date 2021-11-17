@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ using MingXu.Socket.MessageType;
 namespace MingXu.Socket
 {
     [DisallowMultipleComponent]
-    [AddComponentMenu("MingXu/Socket.IO/Socket")]
+    [AddComponentMenu("MingXu/Socket.IO")]
     public class SocketIOUnity : MonoBehaviour
     {
         private IO Socket;
@@ -23,6 +23,10 @@ namespace MingXu.Socket
         private Dictionary<string, Dictionary<string, Action<string>>> Listeners = new Dictionary<string, Dictionary<string, Action<string>>>();
 
         #region Unity Functions
+        private void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         private void Update()
         {
             SocketState = Socket.state;
