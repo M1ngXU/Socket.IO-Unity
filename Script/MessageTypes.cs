@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,7 +79,13 @@ namespace MingXu.Socket.MessageType
             switch (type_id)
             {
                 case 0: // access granted to namespace
-                    m = JsonUtility.FromJson<ConnectedToNamespace>(data_s);
+                    if (data_s.Length > 1)
+                    {
+                        m = JsonUtility.FromJson<ConnectedToNamespace>(data_s);
+                    } else
+                    {
+                        m = new ConnectedToNamespace();
+                    }
                     break;
                 case 1: // access removed from namespace
                     m = new DisconnectedFromNamespace();
