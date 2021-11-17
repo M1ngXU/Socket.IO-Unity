@@ -1,4 +1,6 @@
-# Socket.IO-Unity
+Socket.IO-Unity
+===
+
 A Socket.IO implementation for Unity with basic Event callbacks.
 
 Usage example:
@@ -19,3 +21,7 @@ Once the client connects to a socket.io server, `connect` is emitted.
 `disconnect` is emitted when the client disconnects.
 
 See the doc of the functions of `SocketIOUnity` for detailed information of the methods.
+
+
+
+<sup>~M1ngXU</sup>
