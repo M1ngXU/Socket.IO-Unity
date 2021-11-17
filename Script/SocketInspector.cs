@@ -12,7 +12,7 @@ namespace MingXu.Socket
         private SerializedProperty DontShowWarnings;
         private SerializedProperty DontShowErrors;
 
-        private bool ShowSocketOptions = true;
+        private bool ShowSocketOptions;
         private SerializedProperty Adress;
         private SerializedProperty state;
 
