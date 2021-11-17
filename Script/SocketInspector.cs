@@ -18,7 +18,6 @@ namespace MingXu.Socket
 
         private void OnEnable()
         {
-            Debug.Log("here");
             DontShowLogs = serializedObject.FindProperty("DontShowLogs");
             DontShowWarnings = serializedObject.FindProperty("DontShowWarnings");
             DontShowErrors = serializedObject.FindProperty("DontShowErrors");
