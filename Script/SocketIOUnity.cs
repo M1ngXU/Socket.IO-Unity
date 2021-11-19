@@ -9,7 +9,7 @@ using MingXu.Socket.MessageType;
 namespace MingXu.Socket
 {
     [DisallowMultipleComponent]
-    [AddComponentMenu("MingXu/Socket.IO/Socket")]
+    [AddComponentMenu("MingXu/Socket.IO")]
     public class SocketIOUnity : MonoBehaviour
     {
         private IO Socket;
@@ -23,6 +23,10 @@ namespace MingXu.Socket
         private Dictionary<string, Dictionary<string, Action<string>>> Listeners = new Dictionary<string, Dictionary<string, Action<string>>>();
 
         #region Unity Functions
+        private void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         private void Update()
         {
             SocketState = Socket.state;
@@ -101,7 +105,8 @@ namespace MingXu.Socket
         /// <param name="nsp">Namespace of the event.</param>
         /// <param name="name">Event name.</param>
         /// <param name="method">A function that is executed on the main thread when the Event is received.</param>
-        public void On(string nsp, string name, Action<string> method) {
+        public void On(string nsp, string name, Action<string> method)
+        {
             if (!Listeners.ContainsKey(nsp))
             {
                 Listeners.Add(nsp, new Dictionary<string, Action<string>>());

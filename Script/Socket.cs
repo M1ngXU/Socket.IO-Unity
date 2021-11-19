@@ -192,7 +192,13 @@ namespace MingXu.Socket
 
         public async Task Send(EngineIOMessage m, WebSocketMessageType type = WebSocketMessageType.Text)
         {
-            await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(m.ToString())), type, true, CancellationToken.None);
+            UnityEngine.Debug.Log(m.ToString());
+            await socket.SendAsync(
+                new ArraySegment<byte>(Encoding.UTF8.GetBytes(m.ToString())),
+                type,
+                true,
+                CancellationToken.None
+            );
         }
 
         private async void ReceiveInBackground()
@@ -204,9 +210,10 @@ namespace MingXu.Socket
                 var ms = new MemoryStream();
                 do
                 {
+                    if (state != State.Open) return;
                     result = await socket.ReceiveAsync(buffer, CancellationToken.None);
                     ms.Write(buffer.Array, buffer.Offset, result.Count);
-                } while (!result.EndOfMessage && state == State.Open);
+                } while (!result.EndOfMessage);
 
                 if (result.MessageType == WebSocketMessageType.Close)
                     break;

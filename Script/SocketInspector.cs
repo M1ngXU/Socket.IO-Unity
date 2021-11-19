@@ -12,13 +12,12 @@ namespace MingXu.Socket
         private SerializedProperty DontShowWarnings;
         private SerializedProperty DontShowErrors;
 
-        private bool ShowSocketOptions = true;
+        private bool ShowSocketOptions;
         private SerializedProperty Adress;
         private SerializedProperty state;
 
         private void OnEnable()
         {
-            Debug.Log("here");
             DontShowLogs = serializedObject.FindProperty("DontShowLogs");
             DontShowWarnings = serializedObject.FindProperty("DontShowWarnings");
             DontShowErrors = serializedObject.FindProperty("DontShowErrors");
@@ -46,7 +45,8 @@ namespace MingXu.Socket
                 {
                     EditorGUILayout.LabelField("Adress: " + Adress.stringValue);
                     EditorGUILayout.LabelField("State: " + (state.enumValueIndex == (int)State.Closed ? "Closed" : (state.enumValueIndex == (int)State.Open ? "Open" : "Opening")));
-                } else
+                }
+                else
                 {
                     EditorGUILayout.HelpBox("Only available in Play Mode", UnityEditor.MessageType.Warning);
                 }

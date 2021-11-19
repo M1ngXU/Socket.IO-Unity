@@ -79,7 +79,14 @@ namespace MingXu.Socket.MessageType
             switch (type_id)
             {
                 case 0: // access granted to namespace
-                    m = JsonUtility.FromJson<ConnectedToNamespace>(data_s);
+                    if (data_s.Length > 1)
+                    {
+                        m = JsonUtility.FromJson<ConnectedToNamespace>(data_s);
+                    }
+                    else
+                    {
+                        m = new ConnectedToNamespace();
+                    }
                     break;
                 case 1: // access removed from namespace
                     m = new DisconnectedFromNamespace();
@@ -222,7 +229,7 @@ namespace MingXu.Socket.MessageType
     {
         private string @event;
         private string d;
-        public override void SerializeDataObject() => data = "[\"" + @event + "\",\"" + d + "\"]";
+        public override void SerializeDataObject() => data = "[\"" + @event + "\"," + d + "]";
 
         public KeyValuePair<string, string> EventData;
 
